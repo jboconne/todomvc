@@ -24,14 +24,9 @@ export class TodoListComponent {
     return this.todosService.getItems('active');
   }
 
-  // Removes a specific todo item from the list
-  removeTodo(todo: Todo): void {
-    this.todosService.removeItem(todo);
-  }
-
   // Toggles completion state of all todos based on checkbox state
-  toggleAll(e: Event) {
+  async toggleAll(e: Event) {
     const input = e.target as HTMLInputElement;
-    this.todosService.toggleAll(input.checked);
+    await this.todosService.toggleAll(input.checked);
   }
 }

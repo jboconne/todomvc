@@ -45,7 +45,7 @@ export class FooterComponent {
     return this.todosService.getItems(this.filter);
   }
 
-  clearCompleted() {
-    this.todosService.clearCompleted();
+  async clearCompleted() {
+    await this.todosService.clearCompleted();
   }
 }

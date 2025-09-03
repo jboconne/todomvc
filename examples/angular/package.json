@@ -6,7 +6,10 @@
     "start": "ng serve",
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
-    "test": "ng test"
+    "test": "ng test",
+    "fullstack": "./start-fullstack.sh",
+    "backend": "cd backend && npm start",
+    "backend:dev": "cd backend && npm run dev"
   },
   "private": true,
   "dependencies": {
