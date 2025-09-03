@@ -24,18 +24,28 @@
         <a routerLink="/completed" [class.selected]="filter === 'completed'">Completed</a>
       </li>
       <li>
-        <a routerLink="/high-priority" [class.selected]="filter === 'high-priority'">🚩 High Priority</a>
+        <a routerLink="/high-priority" [class.selected]="filter === 'high-priority'" class="flex items-center gap-2">
+          <iconify-icon icon="material-symbols:flag-rounded" width="14" height="14"></iconify-icon>
+          Priority
+        </a>
       </li>
       <li>
-        <a routerLink="/active-high-priority" [class.selected]="filter === 'active-high-priority'">🚩 Active</a>
+        <a routerLink="/active-high-priority" [class.selected]="filter === 'active-high-priority'" class="flex items-center gap-2">
+          <iconify-icon icon="material-symbols:flag-rounded" width="14" height="14"></iconify-icon>
+          Active
+        </a>
       </li>
       <li>
-        <a routerLink="/completed-high-priority" [class.selected]="filter === 'completed-high-priority'">🚩 Completed</a>
+        <a routerLink="/completed-high-priority" [class.selected]="filter === 'completed-high-priority'" class="flex items-center gap-2">
+          <iconify-icon icon="material-symbols:flag-rounded" width="14" height="14"></iconify-icon>
+          Done
+        </a>
       </li>
     </ul>
     @if (completedTodos.length > 0 && (filter === 'all' || filter === 'completed' || filter === 'high-priority' || filter === 'completed-high-priority')) {
-      <button type="button" class="clear-completed" (click)="clearCompleted()">
-        Clear Completed
+      <button type="button" class="clear-completed group" (click)="clearCompleted()">
+        <iconify-icon icon="material-symbols:delete-sweep-rounded" class="mr-2 group-hover:scale-110 transition-transform duration-200" width="16" height="16"></iconify-icon>
+        Purge Completed
       </button>
     }
   </footer>

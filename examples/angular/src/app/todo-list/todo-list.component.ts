@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { Location } from '@angular/common';
 import { Todo, TodosService } from '../todos.service';
 import { TodoItemComponent } from '../todo-item/todo-item.component';
@@ -8,6 +8,7 @@ import { TodoItemComponent } from '../todo-item/todo-item.component';
     standalone: true,
     imports: [TodoItemComponent],
     templateUrl: './todo-list.component.html',
+    schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
 export class TodoListComponent {
   private location = inject(Location);

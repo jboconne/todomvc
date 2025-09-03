@@ -7,6 +7,7 @@ import {
   ElementRef,
   AfterViewChecked,
   inject,
+  CUSTOM_ELEMENTS_SCHEMA,
 } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { Todo, TodosService } from '../todos.service';
@@ -16,6 +17,7 @@ import { Todo, TodosService } from '../todos.service';
   standalone: true,
   imports: [FormsModule],
   templateUrl: './todo-item.component.html',
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
 export class TodoItemComponent implements AfterViewChecked {
   @Input({ required: true }) todo!: Todo;

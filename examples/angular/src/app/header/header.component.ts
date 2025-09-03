@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { TodosService } from '../todos.service';
 
@@ -7,6 +7,7 @@ import { TodosService } from '../todos.service';
   selector: 'app-todo-header',
   imports: [FormsModule],
   templateUrl: './header.component.html',
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
 export class HeaderComponent {
   private todosService = inject(TodosService);

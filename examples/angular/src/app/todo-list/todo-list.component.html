@@ -1,8 +1,11 @@
 @if (todos.length > 0) {
   <main class="main">
     <div class="toggle-all-container">
-      <input class="toggle-all" type="checkbox" (change)="toggleAll($event)" [checked]="!activeTodos.length" />
-      <label class="toggle-all-label" htmlFor="toggle-all">Toggle All Input</label>
+      <input class="toggle-all" type="checkbox" (change)="toggleAll($event)" [checked]="!activeTodos.length" id="toggle-all" />
+      <label class="toggle-all-label" for="toggle-all">
+        <iconify-icon icon="material-symbols:check-all-rounded" class="mr-2" width="16" height="16"></iconify-icon>
+        Sync All Tasks
+      </label>
     </div>
     <ul class="todo-list">
       @for (todo of todos; track todo) {

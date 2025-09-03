@@ -1,14 +1,26 @@
-<li [class.completed]="todo.completed" [class.editing]="isEditing" [class.high-priority]="todo.highPriority">
+<li [class.completed]="todo.completed" [class.editing]="isEditing" [class.high-priority]="todo.highPriority" class="group">
   <div class="view">
       <input class="toggle" type="checkbox" (click)="toggleTodo()" [checked]="todo.completed" />
-      <button class="priority-flag" 
+      <button class="priority-flag group/flag" 
               [class.high-priority]="todo.highPriority"
               (click)="togglePriority()"
               title="Toggle high priority">
-        🚩
+        <iconify-icon 
+          icon="material-symbols:flag-rounded" 
+          [class]="todo.highPriority ? 'text-white' : 'text-gray-400 group-hover/flag:text-neon-purple-400'"
+          width="16" 
+          height="16">
+        </iconify-icon>
       </button>
       <label (dblclick)="startEdit()">{{ todo.title }}</label>
-      <button class="destroy" (click)="removeTodo()"></button>
+      <button class="destroy group/destroy" (click)="removeTodo()" title="Delete task">
+        <iconify-icon 
+          icon="material-symbols:close-rounded" 
+          class="text-gray-400 group-hover/destroy:text-red-400 transition-colors duration-200"
+          width="18" 
+          height="18">
+        </iconify-icon>
+      </button>
   </div>
   @if (isEditing) {
     <div class="input-container">
