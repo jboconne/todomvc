@@ -31,3 +31,120 @@ app-todo-item {
 app-todo-item:last-child {
   border-bottom: none;
 }
+
+/* Priority flag styles */
+.priority-flag {
+  background: none;
+  border: none;
+  font-size: 16px;
+  cursor: pointer;
+  padding: 0;
+  margin: 0 8px 0 0;
+  opacity: 0.3;
+  transition: opacity 0.2s ease;
+}
+
+.priority-flag:hover {
+  opacity: 0.6;
+}
+
+.priority-flag.high-priority {
+  opacity: 1;
+}
+
+.new-todo-container {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.new-todo-container .priority-flag {
+  flex-shrink: 0;
+}
+
+.new-todo-container .new-todo {
+  flex: 1;
+}
+
+/* High priority todo styling */
+li.high-priority {
+  border-left: 3px solid #ff6b6b;
+}
+
+li.high-priority .view {
+  background-color: #fff5f5;
+}
+
+/* Priority filter styling */
+.filters li a[routerLink="/high-priority"],
+.filters li a[routerLink="/active-high-priority"],
+.filters li a[routerLink="/completed-high-priority"] {
+  font-weight: 500;
+}
+
+.filters li a[routerLink="/high-priority"]:hover,
+.filters li a[routerLink="/active-high-priority"]:hover,
+.filters li a[routerLink="/completed-high-priority"]:hover {
+  color: #ff6b6b;
+}
+
+/* Footer width adjustments for priority filters */
+.footer {
+  min-width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.footer .todo-count {
+  flex-shrink: 0;
+  min-width: 120px;
+}
+
+.footer .filters {
+  flex: 1;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 5px;
+  margin: 0 10px;
+}
+
+.footer .filters li {
+  margin: 0;
+}
+
+.footer .filters li a {
+  padding: 3px 7px;
+  font-size: 14px;
+  white-space: nowrap;
+}
+
+.footer .clear-completed {
+  flex-shrink: 0;
+  min-width: 120px;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .footer {
+    flex-direction: column;
+    align-items: stretch;
+    text-align: center;
+  }
+  
+  .footer .filters {
+    order: 1;
+    margin: 10px 0;
+  }
+  
+  .footer .todo-count {
+    order: 2;
+  }
+  
+  .footer .clear-completed {
+    order: 3;
+  }
+}

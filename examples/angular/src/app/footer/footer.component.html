@@ -1,8 +1,17 @@
 @if (todos.length > 0) {
   <footer class="footer">
     <span class="todo-count">
-      <strong>{{ activeTodos.length }}</strong>
-      {{ activeTodos.length === 1 ? "item" : "items" }} left
+      <strong>{{ filteredTodos.length }}</strong>
+      {{ filteredTodos.length === 1 ? "item" : "items" }}
+      @if (filter === 'active' || filter === 'active-high-priority') {
+        left
+      } @else if (filter === 'completed' || filter === 'completed-high-priority') {
+        completed
+      } @else if (filter === 'high-priority') {
+        high priority
+      } @else {
+        total
+      }
     </span>
     <ul class="filters">
       <li>
@@ -14,8 +23,17 @@
       <li>
         <a routerLink="/completed" [class.selected]="filter === 'completed'">Completed</a>
       </li>
+      <li>
+        <a routerLink="/high-priority" [class.selected]="filter === 'high-priority'">🚩 High Priority</a>
+      </li>
+      <li>
+        <a routerLink="/active-high-priority" [class.selected]="filter === 'active-high-priority'">🚩 Active</a>
+      </li>
+      <li>
+        <a routerLink="/completed-high-priority" [class.selected]="filter === 'completed-high-priority'">🚩 Completed</a>
+      </li>
     </ul>
-    @if (completedTodos.length > 0) {
+    @if (completedTodos.length > 0 && (filter === 'all' || filter === 'completed' || filter === 'high-priority' || filter === 'completed-high-priority')) {
       <button type="button" class="clear-completed" (click)="clearCompleted()">
         Clear Completed
       </button>

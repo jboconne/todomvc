@@ -25,8 +25,24 @@ export class FooterComponent {
     return this.todosService.getItems('completed');
   }
 
+  get highPriorityTodos(): Todo[] {
+    return this.todosService.getItems('high-priority');
+  }
+
+  get activeHighPriorityTodos(): Todo[] {
+    return this.todosService.getItems('active-high-priority');
+  }
+
+  get completedHighPriorityTodos(): Todo[] {
+    return this.todosService.getItems('completed-high-priority');
+  }
+
   get filter(): string {
     return this.location.path().split('/')[1] || 'all';
+  }
+
+  get filteredTodos(): Todo[] {
+    return this.todosService.getItems(this.filter);
   }
 
   clearCompleted() {

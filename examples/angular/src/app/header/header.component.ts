@@ -12,13 +12,19 @@ export class HeaderComponent {
   private todosService = inject(TodosService);
 
   title = '';
+  highPriority = false;
 
   addTodo() {
     if (this.title) {
-      this.todosService.addItem(this.title);
+      this.todosService.addItem(this.title, this.highPriority);
 
-      // Reset title to clear input field.
+      // Reset title and priority to clear input field.
       this.title = '';
+      this.highPriority = false;
     }
+  }
+
+  togglePriority() {
+    this.highPriority = !this.highPriority;
   }
 }

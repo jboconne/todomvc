@@ -1,8 +1,16 @@
 <header class="header">
-  <h1>Todos</h1>
-  <input class="new-todo"
-    [(ngModel)]="title"
-    autofocus=""
-    placeholder="What needs to be done?"
-    (keyup.enter)="addTodo()" />
+  <h1>Todos Angular</h1>
+  <div class="new-todo-container">
+    <button class="priority-flag" 
+            [class.high-priority]="highPriority"
+            (click)="togglePriority()"
+            title="Toggle high priority">
+      🚩
+    </button>
+    <input class="new-todo"
+      [(ngModel)]="title"
+      autofocus=""
+      placeholder="What needs to be done?"
+      (keyup.enter)="addTodo()" />
+  </div>
 </header>

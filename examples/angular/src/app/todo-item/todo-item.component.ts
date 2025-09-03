@@ -1,6 +1,15 @@
-import { Component, Input, Output, EventEmitter, ViewChild, ElementRef, AfterViewChecked } from '@angular/core';
+import {
+  Component,
+  Input,
+  Output,
+  EventEmitter,
+  ViewChild,
+  ElementRef,
+  AfterViewChecked,
+  inject,
+} from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { Todo } from '../todos.service';
+import { Todo, TodosService } from '../todos.service';
 
 @Component({
   selector: 'app-todo-item',
@@ -9,11 +18,13 @@ import { Todo } from '../todos.service';
   templateUrl: './todo-item.component.html',
 })
 export class TodoItemComponent implements AfterViewChecked {
-  @Input({required: true}) todo!: Todo;
+  @Input({ required: true }) todo!: Todo;
 
   @Output() remove = new EventEmitter<Todo>();
 
   @ViewChild('todoInputRef') inputRef?: ElementRef;
+
+  private todosService = inject(TodosService);
 
   title = '';
 
@@ -22,7 +33,7 @@ export class TodoItemComponent implements AfterViewChecked {
   toggleTodo(): void {
     this.todo.completed = !this.todo.completed;
   }
-
+  
   removeTodo(): void {
     this.remove.emit(this.todo);
   }
@@ -47,6 +58,10 @@ export class TodoItemComponent implements AfterViewChecked {
     }
 
     this.isEditing = false;
+  }
+
+  togglePriority() {
+    this.todosService.togglePriority(this.todo);
   }
 
   ngAfterViewChecked(): void {
