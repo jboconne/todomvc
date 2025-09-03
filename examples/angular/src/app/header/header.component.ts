@@ -14,9 +14,9 @@ export class HeaderComponent {
   title = '';
   highPriority = false;
 
-  addTodo() {
-    if (this.title) {
-      this.todosService.addItem(this.title, this.highPriority);
+  async addTodo() {
+    if (this.title.trim()) {
+      await this.todosService.addItem(this.title.trim(), this.highPriority);
 
       // Reset title and priority to clear input field.
       this.title = '';

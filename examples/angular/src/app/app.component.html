@@ -1,4 +1,13 @@
 
+@if (error$ | async; as error) {
+  <div class="error-banner bg-red-900 border border-red-700 text-red-100 px-4 py-3 rounded mb-4 mx-4 mt-4">
+    <div class="flex items-center">
+      <iconify-icon icon="heroicons:exclamation-triangle" class="text-red-400 mr-2"></iconify-icon>
+      <span>{{ error }}</span>
+    </div>
+  </div>
+}
+
 <section class="todoapp">
   <app-todo-header />
   <app-todo-list />

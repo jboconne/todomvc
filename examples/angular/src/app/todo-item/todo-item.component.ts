@@ -1,8 +1,6 @@
 import {
   Component,
   Input,
-  Output,
-  EventEmitter,
   ViewChild,
   ElementRef,
   AfterViewChecked,
@@ -20,8 +18,6 @@ import { Todo, TodosService } from '../todos.service';
 export class TodoItemComponent implements AfterViewChecked {
   @Input({ required: true }) todo!: Todo;
 
-  @Output() remove = new EventEmitter<Todo>();
-
   @ViewChild('todoInputRef') inputRef?: ElementRef;
 
   private todosService = inject(TodosService);
@@ -30,12 +26,13 @@ export class TodoItemComponent implements AfterViewChecked {
 
   isEditing = false;
 
-  toggleTodo(): void {
-    this.todo.completed = !this.todo.completed;
+  async toggleTodo(): Promise<void> {
+    const updatedTodo = { ...this.todo, completed: !this.todo.completed };
+    await this.todosService.updateItem(updatedTodo);
   }
   
-  removeTodo(): void {
-    this.remove.emit(this.todo);
+  async removeTodo(): Promise<void> {
+    await this.todosService.removeItem(this.todo);
   }
 
   startEdit() {
@@ -50,18 +47,19 @@ export class TodoItemComponent implements AfterViewChecked {
     this.title = this.todo.title;
   }
 
-  updateTodo() {
-    if (!this.title) {
-      this.remove.emit(this.todo);
+  async updateTodo() {
+    if (!this.title.trim()) {
+      await this.removeTodo();
     } else {
-      this.todo.title = this.title;
+      const updatedTodo = { ...this.todo, title: this.title.trim() };
+      await this.todosService.updateItem(updatedTodo);
     }
 
     this.isEditing = false;
   }
 
-  togglePriority() {
-    this.todosService.togglePriority(this.todo);
+  async togglePriority() {
+    await this.todosService.togglePriority(this.todo);
   }
 
   ngAfterViewChecked(): void {

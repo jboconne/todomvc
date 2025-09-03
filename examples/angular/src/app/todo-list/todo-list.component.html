@@ -6,7 +6,7 @@
     </div>
     <ul class="todo-list">
       @for (todo of todos; track todo) {
-        <app-todo-item [todo]="todo" (remove)="removeTodo($event)" />
+        <app-todo-item [todo]="todo" />
       }
     </ul>
   </main>

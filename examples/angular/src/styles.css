@@ -1,150 +1,31 @@
-/* used for things that should be hidden in the ui,
-but useful for people who use screen readers */
-.visually-hidden {
-  border: 0;
-  clip: rect(0 0 0 0);
-  clip-path: inset(50%);
-  height: 1px;
-  width: 1px;
-  margin: -1px;
-  padding: 0;
-  overflow: hidden;
-  position: absolute;
-  white-space: nowrap;
+@import 'tailwindcss/base';
+@import 'tailwindcss/components';
+@import 'tailwindcss/utilities';
+
+/* Import Google Fonts for futuristic look */
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+
+/* Base global styles for futuristic theme */
+* {
+  box-sizing: border-box;
 }
 
-.toggle-all {
-  width: 40px !important;
-  height: 60px !important;
-  right: auto !important;
-}
-
-.toggle-all-label {
-  pointer-events: none;
-}
-
-app-todo-item {
-  display: block;
-  border-bottom: 1px solid #ededed;
-}
-
-app-todo-item:last-child {
-  border-bottom: none;
-}
-
-/* Priority flag styles */
-.priority-flag {
-  background: none;
-  border: none;
-  font-size: 16px;
-  cursor: pointer;
-  padding: 0;
-  margin: 0 8px 0 0;
-  opacity: 0.3;
-  transition: opacity 0.2s ease;
-}
-
-.priority-flag:hover {
-  opacity: 0.6;
-}
-
-.priority-flag.high-priority {
-  opacity: 1;
-}
-
-.new-todo-container {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-}
-
-.new-todo-container .priority-flag {
-  flex-shrink: 0;
-}
-
-.new-todo-container .new-todo {
-  flex: 1;
-}
-
-/* High priority todo styling */
-li.high-priority {
-  border-left: 3px solid #ff6b6b;
-}
-
-li.high-priority .view {
-  background-color: #fff5f5;
-}
-
-/* Priority filter styling */
-.filters li a[routerLink="/high-priority"],
-.filters li a[routerLink="/active-high-priority"],
-.filters li a[routerLink="/completed-high-priority"] {
-  font-weight: 500;
-}
-
-.filters li a[routerLink="/high-priority"]:hover,
-.filters li a[routerLink="/active-high-priority"]:hover,
-.filters li a[routerLink="/completed-high-priority"]:hover {
-  color: #ff6b6b;
-}
-
-/* Footer width adjustments for priority filters */
-.footer {
-  min-width: 100%;
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  justify-content: space-between;
-  gap: 10px;
-}
-
-.footer .todo-count {
-  flex-shrink: 0;
-  min-width: 120px;
-}
-
-.footer .filters {
-  flex: 1;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 5px;
-  margin: 0 10px;
-}
-
-.footer .filters li {
+html, body {
   margin: 0;
+  padding: 0;
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
-.footer .filters li a {
-  padding: 3px 7px;
-  font-size: 14px;
-  white-space: nowrap;
+/* Accessibility helper class */
+.visually-hidden {
+  @apply sr-only;
 }
 
-.footer .clear-completed {
-  flex-shrink: 0;
-  min-width: 120px;
-}
-
-/* Responsive adjustments */
-@media (max-width: 768px) {
-  .footer {
-    flex-direction: column;
-    align-items: stretch;
-    text-align: center;
-  }
-  
-  .footer .filters {
-    order: 1;
-    margin: 10px 0;
-  }
-  
-  .footer .todo-count {
-    order: 2;
-  }
-  
-  .footer .clear-completed {
-    order: 3;
-  }
+/* Custom iconify icon element styling */
+iconify-icon {
+  display: inline-block;
+  vertical-align: middle;
 }
