@@ -1,150 +1,352 @@
-/* used for things that should be hidden in the ui,
-but useful for people who use screen readers */
-.visually-hidden {
-  border: 0;
-  clip: rect(0 0 0 0);
-  clip-path: inset(50%);
-  height: 1px;
-  width: 1px;
-  margin: -1px;
-  padding: 0;
-  overflow: hidden;
-  position: absolute;
-  white-space: nowrap;
+@import 'tailwindcss/base';
+@import 'tailwindcss/components';
+@import 'tailwindcss/utilities';
+
+/* Import futuristic fonts */
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Inter:wght@300;400;500;600;700&display=swap');
+
+/* Global dark theme base styles */
+html {
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
 }
 
-.toggle-all {
-  width: 40px !important;
-  height: 60px !important;
-  right: auto !important;
+body {
+  @apply bg-dark-surface-900 text-gray-100 min-h-screen;
+  background: linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #0f172a 100%);
+  background-attachment: fixed;
 }
 
-.toggle-all-label {
-  pointer-events: none;
+/* Futuristic TodoMVC App Container */
+.todoapp {
+  @apply max-w-2xl mx-auto mt-8 mb-16 px-4 relative;
+  background: linear-gradient(145deg, rgba(30, 41, 59, 0.8), rgba(15, 23, 42, 0.9));
+  border: 1px solid rgba(148, 163, 184, 0.1);
+  border-radius: 24px;
+  backdrop-filter: blur(20px);
+  box-shadow: 
+    0 20px 40px rgba(0, 0, 0, 0.4),
+    0 0 0 1px rgba(255, 255, 255, 0.05),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1);
+  animation: float 6s ease-in-out infinite;
 }
 
-app-todo-item {
-  display: block;
-  border-bottom: 1px solid #ededed;
+/* Header Styles */
+.header {
+  @apply p-8 pb-6;
 }
 
-app-todo-item:last-child {
-  border-bottom: none;
+.header h1 {
+  @apply text-5xl font-cyber font-black text-center mb-8;
+  background: linear-gradient(135deg, #4dc5ff, #9333ea, #4dc5ff);
+  background-size: 200% 200%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: gradient-shift 3s ease-in-out infinite;
+  text-shadow: 0 0 30px rgba(77, 197, 255, 0.3);
 }
 
-/* Priority flag styles */
+@keyframes gradient-shift {
+  0%, 100% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+}
+
+/* New Todo Container */
+.new-todo-container {
+  @apply flex items-center gap-3;
+}
+
+/* Priority Flag Button */
 .priority-flag {
-  background: none;
-  border: none;
-  font-size: 16px;
-  cursor: pointer;
-  padding: 0;
-  margin: 0 8px 0 0;
-  opacity: 0.3;
-  transition: opacity 0.2s ease;
-}
-
-.priority-flag:hover {
-  opacity: 0.6;
+  @apply w-12 h-12 rounded-xl flex items-center justify-center text-xl transition-all duration-300;
+  @apply bg-dark-surface-800 border border-dark-surface-600 hover:border-neon-purple-500;
+  @apply hover:shadow-neon hover:scale-105;
 }
 
 .priority-flag.high-priority {
-  opacity: 1;
+  @apply bg-gradient-to-r from-neon-purple-600 to-cyber-blue-500 border-neon-purple-400;
+  @apply shadow-neon;
+  box-shadow: 0 0 20px rgba(168, 85, 247, 0.6);
 }
 
-.new-todo-container {
-  display: flex;
-  align-items: center;
-  gap: 8px;
+/* New Todo Input */
+.new-todo {
+  @apply flex-1 text-lg px-6 py-4 rounded-xl transition-all duration-300;
+  @apply bg-dark-surface-800 border border-dark-surface-600 text-gray-100;
+  @apply placeholder-gray-400 focus:outline-none focus:border-cyber-blue-500;
+  @apply focus:shadow-cyber focus:bg-dark-surface-700;
 }
 
-.new-todo-container .priority-flag {
-  flex-shrink: 0;
+.new-todo::placeholder {
+  @apply font-medium;
 }
 
-.new-todo-container .new-todo {
-  flex: 1;
+/* Main Content Area */
+.main {
+  @apply px-6 py-4;
 }
 
-/* High priority todo styling */
-li.high-priority {
-  border-left: 3px solid #ff6b6b;
+/* Toggle All Container */
+.toggle-all-container {
+  @apply flex items-center mb-4 px-2;
 }
 
-li.high-priority .view {
-  background-color: #fff5f5;
+.toggle-all {
+  @apply w-6 h-6 rounded-lg accent-cyber-blue-500 mr-4;
+  @apply bg-dark-surface-700 border border-dark-surface-600;
 }
 
-/* Priority filter styling */
-.filters li a[routerLink="/high-priority"],
-.filters li a[routerLink="/active-high-priority"],
-.filters li a[routerLink="/completed-high-priority"] {
-  font-weight: 500;
+.toggle-all-label {
+  @apply text-sm text-gray-400 font-medium cursor-pointer select-none;
 }
 
-.filters li a[routerLink="/high-priority"]:hover,
-.filters li a[routerLink="/active-high-priority"]:hover,
-.filters li a[routerLink="/completed-high-priority"]:hover {
-  color: #ff6b6b;
+/* Todo List */
+.todo-list {
+  @apply space-y-2;
 }
 
-/* Footer width adjustments for priority filters */
+/* Todo Item Styles */
+app-todo-item {
+  @apply block animate-fade-in;
+}
+
+.todo-list li {
+  @apply rounded-xl border border-dark-surface-700 transition-all duration-300;
+  @apply bg-gradient-to-r from-dark-surface-800 to-dark-surface-700;
+  @apply hover:border-dark-surface-600 hover:shadow-glow;
+}
+
+.todo-list li.completed {
+  @apply opacity-60 bg-gradient-to-r from-dark-surface-900 to-dark-surface-800;
+}
+
+.todo-list li.high-priority {
+  @apply border-l-4 border-l-neon-purple-500;
+  background: linear-gradient(90deg, rgba(168, 85, 247, 0.1), rgba(30, 41, 59, 0.8));
+  box-shadow: 0 0 15px rgba(168, 85, 247, 0.2);
+}
+
+.todo-list li.editing {
+  @apply border-cyber-blue-500 shadow-cyber;
+}
+
+/* Todo Item View */
+.view {
+  @apply flex items-center p-4 gap-3;
+}
+
+.toggle {
+  @apply w-6 h-6 rounded-lg accent-cyber-blue-500;
+  @apply bg-dark-surface-700 border border-dark-surface-600;
+}
+
+.view label {
+  @apply flex-1 text-lg font-medium cursor-pointer transition-colors duration-200;
+  @apply hover:text-cyber-blue-300;
+}
+
+.view label:hover {
+  text-shadow: 0 0 10px rgba(77, 197, 255, 0.3);
+}
+
+.destroy {
+  @apply w-8 h-8 rounded-lg bg-transparent border-none text-red-400;
+  @apply hover:text-red-300 hover:bg-red-500/10 transition-all duration-200;
+  @apply opacity-0 group-hover:opacity-100;
+}
+
+.destroy::after {
+  content: '×';
+  @apply text-xl font-bold;
+}
+
+.todo-list li:hover .destroy {
+  @apply opacity-100;
+}
+
+/* Edit Input */
+.input-container {
+  @apply px-4 pb-4;
+}
+
+.edit {
+  @apply w-full text-lg px-4 py-3 rounded-xl;
+  @apply bg-dark-surface-700 border border-cyber-blue-500 text-gray-100;
+  @apply focus:outline-none focus:shadow-cyber focus:bg-dark-surface-600;
+}
+
+/* Footer Styles */
 .footer {
-  min-width: 100%;
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  justify-content: space-between;
-  gap: 10px;
+  @apply flex flex-wrap items-center justify-between gap-4 p-6 pt-8;
+  @apply border-t border-dark-surface-700 mt-4;
 }
 
-.footer .todo-count {
-  flex-shrink: 0;
-  min-width: 120px;
+.todo-count {
+  @apply text-sm font-medium text-gray-300 flex-shrink-0 min-w-fit;
 }
 
-.footer .filters {
-  flex: 1;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 5px;
-  margin: 0 10px;
+.todo-count strong {
+  @apply text-cyber-blue-400 text-base font-semibold;
 }
 
-.footer .filters li {
-  margin: 0;
+/* Filters */
+.filters {
+  @apply flex flex-wrap justify-center gap-2 flex-1 mx-4;
 }
 
-.footer .filters li a {
-  padding: 3px 7px;
-  font-size: 14px;
-  white-space: nowrap;
+.filters li {
+  @apply list-none;
 }
 
-.footer .clear-completed {
-  flex-shrink: 0;
-  min-width: 120px;
+.filters a {
+  @apply px-4 py-2 text-sm font-medium rounded-lg transition-all duration-300;
+  @apply text-gray-400 border border-transparent;
+  @apply hover:text-cyber-blue-300 hover:border-cyber-blue-500/30;
+  @apply hover:bg-cyber-blue-500/10 hover:shadow-glow;
 }
 
-/* Responsive adjustments */
+.filters a.selected {
+  @apply text-cyber-blue-400 border-cyber-blue-500/50 bg-cyber-blue-500/20;
+  @apply shadow-cyber;
+  text-shadow: 0 0 8px rgba(77, 197, 255, 0.5);
+}
+
+/* Clear Completed Button */
+.clear-completed {
+  @apply px-4 py-2 text-sm font-medium rounded-lg transition-all duration-300;
+  @apply text-red-400 border border-red-500/30 bg-red-500/10;
+  @apply hover:text-red-300 hover:border-red-400 hover:bg-red-500/20;
+  @apply hover:shadow-lg hover:shadow-red-500/20;
+  @apply flex-shrink-0;
+}
+
+/* Accessibility */
+.visually-hidden {
+  @apply sr-only;
+}
+
+/* External Footer (TodoMVC info) */
+.info {
+  @apply text-center mt-16 px-4;
+}
+
+.info p {
+  @apply text-gray-500 text-sm mb-2;
+}
+
+.info a {
+  @apply text-cyber-blue-400 hover:text-cyber-blue-300 transition-colors duration-200;
+  @apply hover:underline;
+}
+
+/* Mobile Responsive Adjustments */
 @media (max-width: 768px) {
+  .todoapp {
+    @apply mt-4 mx-2 max-w-none;
+  }
+  
+  .header h1 {
+    @apply text-4xl mb-6;
+  }
+  
   .footer {
-    flex-direction: column;
-    align-items: stretch;
-    text-align: center;
+    @apply flex-col items-stretch text-center;
   }
   
-  .footer .filters {
-    order: 1;
-    margin: 10px 0;
+  .filters {
+    @apply order-1 my-4 mx-0;
   }
   
-  .footer .todo-count {
-    order: 2;
+  .todo-count {
+    @apply order-2 text-center;
   }
   
-  .footer .clear-completed {
-    order: 3;
+  .clear-completed {
+    @apply order-3 mx-auto w-fit;
   }
+
+  .new-todo-container {
+    @apply flex-col gap-3;
+  }
+  
+  .priority-flag {
+    @apply w-full justify-center;
+  }
+}
+
+/* Touch-friendly interactions for mobile */
+@media (max-width: 768px) {
+  .toggle, .priority-flag, .destroy {
+    @apply min-w-12 min-h-12;
+  }
+  
+  .view {
+    @apply p-4 gap-4;
+  }
+  
+  .filters a {
+    @apply px-6 py-3 text-base min-h-12 flex items-center justify-center;
+  }
+}
+
+/* Smooth animations */
+* {
+  @apply transition-colors duration-200;
+}
+
+/* Custom scrollbar for webkit browsers */
+::-webkit-scrollbar {
+  @apply w-2;
+}
+
+::-webkit-scrollbar-track {
+  @apply bg-dark-surface-800 rounded-full;
+}
+
+::-webkit-scrollbar-thumb {
+  @apply bg-cyber-blue-600 rounded-full;
+  @apply hover:bg-cyber-blue-500;
+}
+
+/* Enhanced particle effects */
+.todoapp::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  border-radius: 24px;
+  background: radial-gradient(circle at 20% 50%, rgba(168, 85, 247, 0.15) 0%, transparent 50%),
+              radial-gradient(circle at 80% 20%, rgba(77, 197, 255, 0.15) 0%, transparent 50%),
+              radial-gradient(circle at 40% 80%, rgba(168, 85, 247, 0.1) 0%, transparent 50%);
+  pointer-events: none;
+  z-index: -1;
+}
+
+/* Subtle floating animation is now applied directly in the main .todoapp selector above */
+
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-10px); }
+}
+
+/* Loading and focus states */
+input:focus, button:focus {
+  @apply outline-none ring-2 ring-cyber-blue-500/50 ring-offset-2 ring-offset-dark-surface-900;
+}
+
+/* Completed todo text styling */
+.completed label {
+  @apply line-through text-gray-500;
+}
+
+/* High priority indicator glow effect */
+.high-priority {
+  animation: priority-pulse 2s ease-in-out infinite;
+}
+
+@keyframes priority-pulse {
+  0%, 100% { box-shadow: 0 0 15px rgba(168, 85, 247, 0.2); }
+  50% { box-shadow: 0 0 25px rgba(168, 85, 247, 0.4); }
 }

@@ -1,16 +1,21 @@
 <header class="header">
-  <h1>Todos Angular</h1>
+  <h1>NEXUS TASKS</h1>
   <div class="new-todo-container">
-    <button class="priority-flag" 
+    <button class="priority-flag group" 
             [class.high-priority]="highPriority"
             (click)="togglePriority()"
             title="Toggle high priority">
-      🚩
+      <iconify-icon 
+        icon="material-symbols:flag-rounded" 
+        [class]="highPriority ? 'text-white' : 'text-gray-400 group-hover:text-neon-purple-400'"
+        width="20" 
+        height="20">
+      </iconify-icon>
     </button>
     <input class="new-todo"
       [(ngModel)]="title"
       autofocus=""
-      placeholder="What needs to be done?"
+      placeholder="Neural link task creation..."
       (keyup.enter)="addTodo()" />
   </div>
 </header>
